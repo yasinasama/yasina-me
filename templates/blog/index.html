@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 {% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <title>LM</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}"/>
 </head>
 <body>
-This is the LM's blog!
-<img src="{% static 'blog/images/index_shouye.jpg' %}">
-Artical ID {{ artical_id }}, Artical_title {{ artical_title }}
-<a href=''>lm</a>
+<div class="header">
+    <img class="header-img" src="{% static 'blog/images/1.jpg' %}">
+</div>
+<br>
+<br>
+{% for artical in artical_list.object_list %}
+    <div class="artical">
+        <div class="artical-header">
+            <h1 class="artical-title">{{ artical.title }}</h1>
+        </div>
+        <div class="artical-body" style="background: url('/media/{{ artical.image }}');height: 388px;width: 588px">
+            <div class="artical-body-tag">
+                <span>{{ artical.createtime }}</span>
+                <span><a href="{% url 'detail' artical.id %}">lm</a></span>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 </body>
 </html>
