@@ -4,16 +4,24 @@ from blog.models import Artical
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+def getMainPage(request):
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    artical_list = paginator.page(1)
+
+    return render_to_response('../templates/blog/index.html', {'artical_list': artical_list, 'paginator': paginator})
+
+
 def getIndex(request, curpage):
     artical_list = Artical.objects.all()
     paginator = Paginator(artical_list, 3)
     try:
-        page = paginator.page(curpage)
+        artical_list = paginator.page(curpage)
     except PageNotAnInteger:
-        page = paginator.page(1)
+        artical_list = paginator.page(1)
     except EmptyPage:
-        page = paginator.page(paginator.num_pages)
-    return render_to_response('../templates/blog/index.html', {'artical_list': page})
+        artical_list = paginator.page(paginator.num_pages)
+    return render_to_response('../templates/blog/index.html', {'artical_list': artical_list, 'paginator': paginator})
 
 
 def getArticalDetail(request, id):

@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'index/(.+)/$', blog.views.getArticalDetail, name='detail'),
     url(r'page/(\d+)', blog.views.getIndex, name='page'),
+    url(r'', blog.views.getMainPage, name='page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# handler404 = 'blog.views.page_not_found'
