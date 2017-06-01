@@ -1,6 +1,5 @@
 from django.contrib import admin
-from blog.models import Artical
+from blog.models import Artical, Tag
 
 
-admin.site.register(Artical)
-
+admin.site.register((Tag, Artical))

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load staticfiles %}
+{% load djangomarkdown %}
 	<head>
 		<meta charset="UTF-8">
 		<title>博客</title>
@@ -139,32 +140,32 @@
 		<div class="box">
 			<div class="box-left">
 				<div class="b1">
-					<a href="">且听且吟</a>
+					<a href="">追逐繁星的孩子</a>
 					<p>我思 我说 我写</p>
 				</div>
 
-				<a href="#" class="list-group-item active">免费域名注册</a>
-				<a href="#" class="list-group-item">24*7 支持</a>
-				<a href="#" class="list-group-item">免费 Window 空间托管</a>
-				<a href="#" class="list-group-item">图像的数量</a>
-				<a href="#" class="list-group-item">每年更新成本</a>
+				<a href="#" class="list-group-item active">首页</a>
+				<a href="#" class="list-group-item">爱好</a>
+				<a href="#" class="list-group-item">归档</a>
+				<a href="#" class="list-group-item">关于</a>
+				<a href="#" class="list-group-item">搜索</a>
 				<div class="b2">
 					<div style="width: 120px;height: 150px;margin: auto;">
-						<img src="{% static 'blog/images/20170525.jpg' %}" width="120px" height="120px" style="margin-top: 10px;" />
-						<p style="text-align: center;font-size: 16px;color: #222;font-weight: 600;line-height: 30px;">羽凡</p>
+						<img src="{% static 'blog/images/headImage.jpg' %}" width="120px" height="120px" style="margin-top: 10px;" />
+						<p style="text-align: center;font-size: 16px;color: #222;font-weight: 600;line-height: 30px;">雷姆kwy</p>
 					</div>
 					<div style="width: 150px;height: 50px;margin: auto;margin-top: 20px;">
 						<div class="b3">
-							<div>123</div>
-							<p>123</p>
+							<div>{{ paginator.count }}</div>
+							<p>文章</p>
 						</div>
 						<div class="b3" style="border-left:1px solid #ddd;border-right:1px solid #ddd">
 							<div>123</div>
-							<p>123</p>
+							<p>图片</p>
 						</div>
 						<div class="b3">
-							<div>123</div>
-							<p>123</p>
+							<div>{{ tag_count }}</div>
+							<p>标签</p>
 						</div>
 					</div>
 					<div class="" style="width: 90%;border-bottom: 1px dotted #ddd;border-top: 1px dotted #ddd;margin: auto;margin-top: 20px;height: 30px;">
@@ -190,20 +191,19 @@
                 {% for artical in artical_list.object_list %}
                     <div class="boxs">
 					<header>{{ artical.title }}</header>
-					<p class="p1">发表于 {{ artical.createtime }} | 分类于 Study | | 阅读次数 92</p>
-					<div class="neirong" style="background: url('/media/{{ artical.image }}') no-repeat;background-size: auto;">
-
+					<p class="p1">发表于{{ artical.createtime }} | 分类于 {{ artical.tag }} |  </p>
+					<div class="neirong" style="background: url('{{ artical.image.url }}') no-repeat;background-size: auto;">
 					</div>
-					<p style="font-size: 16px;color: #555;line-height: 30px;">第一次使用 Springboot 应该是15年年底，当时就被这种约定大于配置的设计惊呆了。那个时候才从上一家公司跳槽，用的是 Spring 3。所以每次开发新项目的时候，配置起来都让我十分痛苦，也因此喜欢上了 Springboot 的种种便利。</p>
+					<p style="font-size: 16px;color: #555;line-height: 30px;">{{ artical.content|djangomarkdown }}</p>
 					<br />
-					<p style="font-size: 16px;color: #555;line-height: 30px;">众观 Springboot 的发展，可以发现，其在简化开发上不断地进步。很多常见的组件框架也有了 Springboot 版本。我想，作为 Java 程序员，是时候进入 Springboot 的世界了。</p>
+					<p style="font-size: 16px;color: #555;line-height: 30px;"></p>
 					<br />
-					<button class="btn btn-default" style="margin: auto;display: block;">阅读全文</button>
+					<button class="btn btn-default" style="margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.title %}'">阅读全文</button>
 					<div style="width: 50px;height: 100px;margin: auto;border-bottom: 1px solid #888;margin-bottom: 10px;">
 
 					</div>
 
-				</div>
+				    </div>
                 {% endfor %}
                 
 

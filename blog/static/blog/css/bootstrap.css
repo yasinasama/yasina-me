@@ -6789,8 +6789,8 @@ a.list-group-item.active:focus .list-group-item-text {
   transform: rotate(180deg);
 }
 .panel .blockUI.blockOverlay {
-  background-image: url(../images/loader-1.gif);
-  background-image: url(../images/loader-2.gif);
+  /*background-image: url(../images/loader-1.gif);*/
+  /*background-image: url(../images/loader-2.gif);*/
   background-repeat: no-repeat;
   background-position: center center;
 }
