@@ -4,7 +4,7 @@
 {% load djangomarkdown %}
 	<head>
 		<meta charset="UTF-8">
-		<title>博客</title>
+		<title>标签页</title>
 {#		<link rel="Shortcut Icon" href="img/ooopic_1495763304.ico" type="image/x-icon">#}
 		<link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}" />
 		<script src="{% static 'blog/javascripts/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
@@ -13,30 +13,30 @@
 			body {
 				background: #f0f0f0;
 			}
-			
+
 			* {
 				margin: 0;
 				padding: 0;
 			}
-			
+
 			header {
 				text-align: center;
 				font-size: 30px;
 				font-weight: 600;
 			}
-			
+
 			.box {
 				width: 970px;
 				margin: auto;
 			}
-			
+
 			.p1 {
 				text-align: center;
 				color: #999;
 				font-size: 14px;
 				line-height: 30px;
 			}
-			
+
 			.neirong {
 				width: 100%;
 				height: 350px;
@@ -44,13 +44,13 @@
 				margin-top: 20px;
 				position: relative;
 			}
-			
+
 			.box-left {
 				width: 240px;
 				margin-right: 10px;
 				float: left;
 			}
-			
+
 			.box-right {
 				width: 702px;
 				background: #fff;
@@ -58,7 +58,7 @@
 				border: 1px solid;
 				float: left;
 			}
-			
+
 			.b1 {
 				height: 115px;
 				width: 100%;
@@ -66,7 +66,7 @@
 				color: #fff;
 				margin-bottom: 10px;
 			}
-			
+
 			.b1 a {
 				color: #fff;
 				font-size: 20px;
@@ -74,16 +74,16 @@
 				display: block;
 				line-height: 75px;
 			}
-			
+
 			.b1 p {
 				text-align: center;
 				color: #ddd;
 			}
-			
+
 			.list-group-item {
 				border: none;
 			}
-			
+
 			.b2 {
 				height: 385px;
 				width: 100%;
@@ -91,26 +91,26 @@
 				color: #fff;
 				margin-top: 10px;
 			}
-			
+
 			.b3 {
 				width: 50px;
 				height: 50px;
 				float: left;
 			}
-			
+
 			.b3 div {
 				font-size: 16px;
 				font-weight: 600;
 				color: #aaa;
 				text-align: center;
 			}
-			
+
 			.b3 p {
 				font-size: 16px;
 				color: #aaa;
 				text-align: center;
 			}
-			
+
 			.box1 {
 				width: 90px;
 				height: 30px;
@@ -119,7 +119,7 @@
 				float: left;
 				margin-bottom: 5px;
 			}
-			
+
 			.box2 {
 				width: 90px;
 				height: 30px;
@@ -128,11 +128,24 @@
 				float: right;
 				margin-bottom: 5px;
 			}
-			
+
 			.boxs {
 				width: 90%;
 				margin: auto;
 			}
+
+            .archive-move-on {
+                position: absolute;
+                top: 11px;
+                left: 0;
+                margin-left: -6px;
+                width: 10px;
+                height: 10px;
+                opacity: .5;
+                background: #555;
+                border: 1px solid #fff;
+                border-radius: 50%;
+            }
 		</style>
 	</head>
 
@@ -144,9 +157,9 @@
 					<p></p>
 				</div>
 
-				<a href="{% url 'mainpage' %}" class="list-group-item active">首页</a>
+				<a href="{% url 'mainpage' %}" class="list-group-item">首页</a>
 				<a href="{% url 'tag' %}" class="list-group-item">标签</a>
-				<a href="{% url 'archive' %}" class="list-group-item">归档</a>
+				<a href="{% url 'archive' %}" class="list-group-item active">归档</a>
 				<a href="{% url 'aboutme' %}" class="list-group-item">关于</a>
 				<a href="#" class="list-group-item">搜索</a>
 				<div class="b2">
@@ -173,7 +186,7 @@
 					</div>
 					<div class="" style="width: 90%;margin: auto;margin-top: 20px;height: 80px;">
 						<div class="box1">
-
+                            <a href="https://github.com/yasinasama/">GitHub</a>
 						</div>
 						<div class="box2">
 
@@ -188,60 +201,16 @@
 				</div>
 			</div>
 			<div class="box-right">
-                {% for artical in artical_list.object_list %}
-                    <div class="boxs">
-					<header>{{ artical.title }}</header>
-					<p class="p1">发表于 {{ artical.createtime }} | 分类于 {{ artical.tag }}</p>
-					<div class="neirong" style="background: url('{{ artical.image.url }}') no-repeat;background-size: auto;">
-					</div>
-					<p style="font-size: 16px;color: #555;line-height: 30px;">{{ artical.content|djangomarkdown }}</p>
-					<br />
-					<p style="font-size: 16px;color: #555;line-height: 30px;"></p>
-					<br />
-					<button class="btn btn-default" style="margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.title %}'">阅读全文</button>
-					<div style="width: 50px;height: 100px;margin: auto;border-bottom: 1px solid #888;margin-bottom: 10px;">
-
-					</div>
-
-				    </div>
+                <span class="archive-move-on">11111111</span>
+                {% for artical in artical_list %}
+                    <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                    <br>
                 {% endfor %}
-                
-
-				<hr />
-
-				    <ul class="pagination">
-                    {% if artical_list.number <= 1 %}
-                        <li>
-                            <a href="{% url 'page' 1 %}">&laquo;</a>
-                        </li>
-                    {% else %}
-                        <li>
-						<a href="{% url 'page' artical_list.previous_page_number %}">&laquo;</a>
-					    </li>
-                    {% endif %}
-                    {% for page in paginator.page_range %}
-					<li>
-						<a href="{% url 'page' page %}">{{ page }}</a>
-					</li>
-                    {% endfor %}
-					{% if artical_list.number >= paginator.num_pages%}
-                        <li>
-                            <a href="{% url 'page' paginator.num_pages %}">&raquo;</a>
-                        </li>
-                    {% else %}
-                        <li>
-						<a href="{% url 'page' artical_list.next_page_number %}">&raquo;</a>
-					    </li>
-                    {% endif %}
-				    </ul>
-
 			</div>
 
 		</div>
 
 	</body>
-	<script type="text/javascript">
-		$(".pagination").css("marginLeft", 350 - 0.5 * $(".pagination").width() + "px")
-	</script>
+
 
 </html>

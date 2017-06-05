@@ -1,20 +1,18 @@
-from django.shortcuts import render_to_response, Http404
+from django.shortcuts import render_to_response, Http404, get_object_or_404
+from markdown import markdown
+
 from blog.models import Artical, Tag
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-from pypinyin import lazy_pinyin
 
 
 def getMainPage(request):
     artical_list = Artical.objects.all()
     paginator = Paginator(artical_list, 3)
     artical_list = paginator.page(1)
-
     tag_count = Tag.objects.count()
-
     return render_to_response('../templates/blog/MainPage.html', {'artical_list': artical_list,
-                                                               'paginator': paginator,
-                                                               'tag_count': tag_count})
+                                                                  'paginator': paginator,
+                                                                  'tag_count': tag_count})
 
 
 def getAnotherPage(request, curpage):
@@ -29,27 +27,62 @@ def getAnotherPage(request, curpage):
     except EmptyPage:
         artical_list = paginator.page(paginator.num_pages)
     return render_to_response('../templates/blog/MainPage.html', {'artical_list': artical_list,
-                                                               'paginator': paginator,
-                                                               'tag_count': tag_count})
+                                                                  'paginator': paginator,
+                                                                  'tag_count': tag_count})
 
 
 def getDetailPage(request, t):
-    current_artical = Artical.objects.get(title=t)
-    return render_to_response('../templates/blog/DetailPage.html', {'current_artical': current_artical})
+    current_artical = get_object_or_404(Artical, title=t)
+    current_artical.content = markdown(current_artical.content, extras=['fenced-code-blocks'])
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    tag_count = Tag.objects.count()
+    return render_to_response('../templates/blog/DetailPage.html', {'current_artical': current_artical,
+                                                                    'paginator': paginator,
+                                                                    'tag_count': tag_count})
 
 
-# def getPinyinTitle(title):
-#     try:
-#         artical = Artical.objects.get(title=title)
-#         return '-'.join(lazy_pinyin(artical.title))
-#     except:
-#         return 'not-found'
+def getTagPage(request):
+    tags = Tag.objects.all()
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    tag_count = Tag.objects.count()
+    return render_to_response('../templates/blog/TagPage.html', {'tags': tags,
+                                                                 'paginator': paginator,
+                                                                 'tag_count': tag_count})
+
+
+def getArchivePage(request):
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    tag_count = Tag.objects.count()
+    return render_to_response('../templates/blog/ArchivePage.html', {'artical_list': artical_list,
+                                                                     'paginator': paginator,
+                                                                     'tag_count': tag_count})
+
+
+def getAboutMePage(request):
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    tag_count = Tag.objects.count()
+    return render_to_response('../templates/blog/AboutMe.html', {'paginator': paginator,
+                                                                 'tag_count': tag_count})
+
+
+def getTagArticals(request, tname):
+    curtag = Tag.objects.get(tname=tname)
+    articals = Artical.objects.filter(tag=tname).all()
+    artical_list = Artical.objects.all()
+    paginator = Paginator(artical_list, 3)
+    tag_count = Tag.objects.count()
+    return render_to_response('../templates/blog/TagArticals.html', {'paginator': paginator,
+                                                                     'tag_count': tag_count,
+                                                                     'curtag': curtag,
+                                                                     'articals': articals})
 
 
 def test(request):
-    artical_id = Artical.objects.get(id=1)
-    return render_to_response('../templates/blog/DetailPage.html', {'artical_id': artical_id})
-
-
-
-
+    body = '''```python
+           hello world
+           '''
+    return render_to_response('../templates/blog/test.html', {'body': body})
