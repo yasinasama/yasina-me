@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Artical(models.Model):
@@ -8,6 +9,9 @@ class Artical(models.Model):
     tag = models.ForeignKey('Tag', to_field='tname', db_column='tag')
     image = models.ImageField(upload_to='img/')
     createtime = models.DateField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[1])
 
     def __str__(self):
         return self.title

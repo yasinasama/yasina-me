@@ -1,233 +1,39 @@
-<!DOCTYPE html>
-<html>
-{% load staticfiles %}
+{% extends "blog/base.html" %}
 {% load djangomarkdown %}
-	<head>
-		<meta charset="UTF-8">
-		<title>博客</title>
-{#		<link rel="Shortcut Icon" href="img/ooopic_1495763304.ico" type="image/x-icon">#}
-		<link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}" />
-		<script src="{% static 'blog/javascripts/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'blog/javascripts/bootstrap.min.js' %}" type="text/javascript" charset="utf-8"></script>
-		<style type="text/css">
-			body {
-				background: #f0f0f0;
-			}
+{% block title %}
+    <title>{{ current_artical.title }} | 追逐繁星的孩子</title>
+{% endblock %}
+{% block box-right %}
+    <div class="box-right">
+        <div class="boxs">
+            <div class="title">
+                <span>{{ current_artical.title }}</span>
+            </div>
+            <div class="p1">
+                <span>发表于 </span><span style="font-size: 12px;font-family: Lato;">{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;| &nbsp;分类于 </span><a style="text-decoration: underline;font-size: 18px;font-family: 微软雅黑" href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a>
+            </div>
+            <div class="neirong">
+                <img style="width: 600px;height: 400px;margin: auto" src="{{ current_artical.image.url }}">
+            </div>
+            <p style="font-size: 16px;color: #555;line-height: 30px;">{{ current_artical.content|safe }}</p>
+            <br/>
+            <p style="font-size: 16px;color: #555;line-height: 30px;"></p>
+            <br/>
 
-			* {
-				margin: 0;
-				padding: 0;
-			}
 
-			header {
-				text-align: center;
-				font-size: 30px;
-				font-weight: 600;
-			}
+        </div>
 
-			.box {
-				width: 970px;
-				margin: auto;
-			}
+        <hr/>
+        <div class="boxs">
+            {% if previos_artical %}
+                <a class='post-nav-next' href="{% url 'detail' previos_artical.title %}" style="float: left;"><i class="glyphicon glyphicon-chevron-left"></i>{{ previos_artical.title }}</a>
+            {% endif %}
+            {% if later_artical %}
+                <a class='post-nav-next' href="{% url 'detail' later_artical.title %}" style="float: right;">{{ later_artical.title }}<i class="glyphicon glyphicon-chevron-right"></i></a>
+            {% endif %}
 
-			.p1 {
-				text-align: center;
-				color: #999;
-				font-size: 14px;
-				line-height: 30px;
-			}
+        </div>
+    </div>
+{% endblock %}
 
-			.neirong {
-				width: 100%;
-				height: 350px;
-				border: 1px solid;
-				margin-top: 20px;
-				position: relative;
-			}
 
-			.box-left {
-				width: 240px;
-				margin-right: 10px;
-				float: left;
-			}
-
-			.box-right {
-				width: 702px;
-				background: #fff;
-				margin-right: 10px;
-				border: 1px solid;
-				float: left;
-			}
-
-			.b1 {
-				height: 115px;
-				width: 100%;
-				background: #373e4a;
-				color: #fff;
-				margin-bottom: 10px;
-			}
-
-			.b1 a {
-				color: #fff;
-				font-size: 20px;
-				text-align: center;
-				display: block;
-				line-height: 75px;
-			}
-
-			.b1 p {
-				text-align: center;
-				color: #ddd;
-			}
-
-			.list-group-item {
-				border: none;
-			}
-
-			.b2 {
-				height: 385px;
-				width: 100%;
-				background: #fff;
-				color: #fff;
-				margin-top: 10px;
-			}
-
-			.b3 {
-				width: 50px;
-				height: 50px;
-				float: left;
-			}
-
-			.b3 div {
-				font-size: 16px;
-				font-weight: 600;
-				color: #aaa;
-				text-align: center;
-			}
-
-			.b3 p {
-				font-size: 16px;
-				color: #aaa;
-				text-align: center;
-			}
-
-			.box1 {
-				width: 90px;
-				height: 30px;
-				border-radius: 3px;
-				background: #ddd;
-				float: left;
-				margin-bottom: 5px;
-			}
-
-			.box2 {
-				width: 90px;
-				height: 30px;
-				border-radius: 3px;
-				background: #ddd;
-				float: right;
-				margin-bottom: 5px;
-			}
-
-			.boxs {
-				width: 90%;
-				margin: auto;
-			}
-		</style>
-	</head>
-
-	<body>
-		<div class="box">
-			<div class="box-left">
-				<div class="b1">
-					<a href="">追逐繁星的孩子</a>
-					<p>我思 我说 我写</p>
-				</div>
-
-				<a href="{% url 'mainpage' %}" class="list-group-item">首页</a>
-				<a href="{% url 'tag' %}" class="list-group-item">标签</a>
-				<a href="{% url 'archive' %}" class="list-group-item">归档</a>
-				<a href="{% url 'aboutme' %}" class="list-group-item">关于</a>
-				<a href="#" class="list-group-item">搜索</a>
-				<div class="b2">
-					<div style="width: 120px;height: 150px;margin: auto;">
-						<img src="{% static 'blog/images/headImage.jpg' %}" width="120px" height="120px" style="margin-top: 10px;" />
-						<p style="text-align: center;font-size: 16px;color: #222;font-weight: 600;line-height: 30px;">雷姆kwy</p>
-					</div>
-					<div style="width: 150px;height: 50px;margin: auto;margin-top: 20px;">
-						<div class="b3">
-							<div>{{ paginator.count }}</div>
-							<p>文章</p>
-						</div>
-						<div class="b3" style="border-left:1px solid #ddd;border-right:1px solid #ddd">
-							<div>123</div>
-							<p>图片</p>
-						</div>
-						<div class="b3">
-							<div>{{ tag_count }}</div>
-							<p>标签</p>
-						</div>
-					</div>
-					<div class="" style="width: 90%;border-bottom: 1px dotted #ddd;border-top: 1px dotted #ddd;margin: auto;margin-top: 20px;height: 30px;">
-						<p style="font-weight: 600;color: orangered;text-align: center;line-height: 30px;font-size: 16px;">RSS</p>
-					</div>
-					<div class="" style="width: 90%;margin: auto;margin-top: 20px;height: 80px;">
-						<div class="box1">
-
-						</div>
-						<div class="box2">
-
-						</div>
-						<div class="box1">
-
-						</div>
-						<div class="box2">
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="box-right">
-                    <div class="boxs">
-					<header>{{ current_artical.title }}</header>
-					<p class="p1">发表于{{ current_artical.createtime }} | 分类于 {{ current_artical.tag }}</p>
-					<div class="neirong" style="background: url('{{ current_artical.image.url }}') no-repeat;background-size: auto;">
-					</div>
-					<p style="font-size: 16px;color: #555;line-height: 30px;">{{ current_artical.content|safe }}</p>
-					<br />
-					<p style="font-size: 16px;color: #555;line-height: 30px;"></p>
-					<br />
-					<div style="width: 50px;height: 100px;margin: auto;border-bottom: 1px solid #888;margin-bottom: 10px;">
-
-					</div>
-
-				    </div>
-
-				<hr />
-                <div class="boxs">
-			    	<a href="" style="float: left;"><i class="glyphicon glyphicon-chevron-left"></i>xxxxxxxxxxxxxx</a><a href="" style="float: right;">xxxxxxxxxxxxxxx<i class="glyphicon glyphicon-chevron-right"></i></a>
-			    </div>
-			</div>
-
-		</div>
-        <a class="go-top">
-			<i class="glyphicon glyphicon-arrow-up"></i>
-		</a>
-
-	</body>
-	<script type="text/javascript">
-	$(".pagination").css("marginLeft",350-0.5*$(".pagination").width()+"px");
-	$(".go-top").click(function(){
-		 $("html,body").animate({scrollTop:"0px"}, 500);
-	})
-	 $(window).scroll(function (){
-	 	console.log($(window).scrollTop)
-	 	if($(window).scrollTop()>100){
-	 		$(".go-top").fadeIn()
-	 	}else{
-	 		$(".go-top").fadeOut()
-	 	}
-	 })
-</script>
-
-</html>
