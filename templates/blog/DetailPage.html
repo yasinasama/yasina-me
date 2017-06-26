@@ -9,10 +9,10 @@
             <div class="title">
                 <span>{{ current_artical.title }}</span>
             </div>
-            <div class="p1">
+            <div class="info">
                 <span><span class="glyphicon glyphicon-edit"></span> &nbsp;发表于 </span><span>{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-tag"></span> &nbsp;分类于 <a href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a>
             </div>
-            <div class="neirong">
+            <div class="pic">
                 <img style="width: 600px;height: 400px;margin: auto" src="{{ current_artical.image.url }}">
             </div>
             <div class="markdown">
@@ -20,10 +20,7 @@
             </div>
 
             <br/>
-
-
         </div>
-
         <hr/>
         <div class="boxs-footer">
             {% if previos_artical %}

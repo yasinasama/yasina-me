@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, Http404, get_object_or_404
+from django.shortcuts import render_to_response
 from django.views.generic import View
 from django.db.models import *
 from blog.models import Artical, Tag
@@ -31,23 +31,29 @@ class TemplateView(View):
         paginator = Paginator(artical_list, 4)
 
         if self.template_type == 'detail':
-            current_artical = get_object_or_404(Artical, title=curartical)
-            if artical_list[0].id != current_artical.id:
-                later_artical = current_artical.get_next_by_createtime()
-            else:
-                later_artical = False
-            if artical_list[len(artical_list) - 1].id != current_artical.id:
-                previos_artical = current_artical.get_previous_by_createtime()
-            else:
-                previos_artical = False
+            try:
+                current_artical = Artical.objects.get(title=curartical)
+                if artical_list[0].id != current_artical.id:
+                    later_artical = current_artical.get_next_by_createtime()
+                else:
+                    later_artical = False
+                if artical_list[len(artical_list) - 1].id != current_artical.id:
+                    previos_artical = current_artical.get_previous_by_createtime()
+                else:
+                    previos_artical = False
+            except ObjectDoesNotExist:
+                return render_to_response('../templates/blog/404.html')
         else:
             current_artical = ''
             later_artical = False
             previos_artical = False
 
         if self.template_type == 'tagarticals':
-            curtag = Tag.objects.get(tname=tname)
-            articals = Artical.objects.filter(tag=tname).all()
+            try:
+                curtag = Tag.objects.get(tname=tname)
+                articals = Artical.objects.filter(tag=tname).all()
+            except ObjectDoesNotExist:
+                return render_to_response('../templates/blog/404.html')
         else:
             curtag = ''
             articals = []

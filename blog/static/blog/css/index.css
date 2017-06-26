@@ -35,14 +35,14 @@ header {
     min-height: 50px;
 }
 
-.p1 {
+.info {
     text-align: center;
     color: #999;
     font-size: 12px;
     line-height: 30px;
 }
 
-.neirong {
+.pic {
     width: 608px;
     height: 408px;
     margin-top: 20px;
@@ -94,7 +94,7 @@ header {
     font-size: 14px;
 }
 
-.b1 {
+.box-left-header {
     height: 115px;
     width: 100%;
     background: #373e4a;
@@ -102,7 +102,7 @@ header {
     margin-bottom: 10px;
 }
 
-.b1 span {
+.box-left-header span {
     color: #fff;
     font-size: 20px;
     text-align: center;
@@ -110,16 +110,17 @@ header {
     line-height: 75px;
 }
 
-.b1 p {
+.box-left-header p {
     text-align: center;
     color: #ddd;
+    font-size: 14px;
 }
 
 .list-group-item {
     border: none;
 }
 
-.b2 {
+.author-info {
     height: 355px;
     width: 240px;
     background: #fff;
@@ -127,7 +128,7 @@ header {
     margin-top: 10px;
 }
 
-.b2 img {
+.author-info img {
     margin-top: 10px;
     padding: 2px;
     max-width: 120px;
@@ -135,26 +136,76 @@ header {
     border: 1px solid #eee;
 }
 
-.b3 {
+.author-intr {
+    width: 120px;
+    height: 150px;
+    margin: auto;
+}
+
+.author-intr p {
+    text-align: center;
+    font-size: 15px;
+    color: #222;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.author-articles-items {
+    width: 150px;
+    height: 50px;
+    margin: 20px auto 0;
+}
+
+.author-articles-items a {
     width: 50px;
     height: 50px;
     float: left;
 }
 
-.b3 div {
+.author-articles-items a div {
     font-size: 14px;
     font-weight: 600;
     color: inherit;;
     text-align: center;
 }
 
-.b3 p {
+.author-articles-items a p {
     font-size: 14px;
     color: #aaa;
     text-align: center;
 }
 
-.box1 {
+.rss {
+    width: 90%;
+    border-bottom: 1px dotted #ddd;
+    border-top: 1px dotted #ddd;
+    margin: 20px auto 0;
+    height: 30px;
+    text-align: center
+}
+
+.rss a {
+    font-weight: 600;
+    color: orangered;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.author-sites-items {
+    width: 90%;
+    margin: 20px auto 0;
+    height: 50px;
+    text-align: center
+}
+
+.author-sites-items img {
+    border-style: none;
+    margin: auto;
+    width: 19px;
+    height: 19px;
+}
+
+.github {
     width: 108px;
     height: 30px;
     border-radius: 3px;
@@ -164,7 +215,7 @@ header {
     font-size: 12px;
 }
 
-.box2 {
+.facebook {
     width: 108px;
     height: 30px;
     border-radius: 3px;
@@ -201,7 +252,12 @@ header {
     border-bottom: none;
 }
 
-.a1 {
+.box-right-tag {
+    width: 90%;
+    margin: 40px;
+}
+
+.tag-small {
     font-size: 14px;
     color: #ddd;
     display: inline-block;
@@ -211,12 +267,12 @@ header {
     word-wrap: break-word;
 }
 
-.a1:hover {
+.tag-small:hover {
     border-bottom: 1px solid #666;
     cursor: pointer;
 }
 
-.a2 {
+.tag-large {
     font-size: 30px;
     color: #111;
     display: inline-block;
@@ -226,7 +282,7 @@ header {
     word-wrap: break-word;
 }
 
-.a2:hover {
+.tag-large:hover {
     border-bottom: 1px solid #666;
     cursor: pointer;
 }
@@ -254,6 +310,12 @@ header {
 
 .div1 a {
     margin-left: 20px;
+}
+
+.div1 p {
+    margin-left: 20px;
+    font-size: 20px;
+    color: black
 }
 
 .div2 {
@@ -305,8 +367,17 @@ header {
     z-index: 11;
 }
 
+.div3 time {
+    position: absolute;
+    font-size: 10px;
+    left: 20px;
+}
+
 .div3 a {
     margin-left: 20px;
+    position: absolute;
+    font-size: 18px;
+    left: 80px;
 }
 
 .div3:hover {
@@ -324,7 +395,8 @@ header {
     top: 28px;
     z-index: 10;
 }
-.box-right-footer{
+
+.box-right-footer {
     width: 702px;
     height: 75px;
     text-align: center;

@@ -14,22 +14,21 @@
                 </div>
                 <div class="div1">
                     <span></span>
-                    <p style="margin-left: 20px;font-size: 20px;color: black">总计: {{ artical_list|length }} 篇文章!</p>
+                    <p>总计: {{ artical_list|length }} 篇文章!</p>
                 </div>
                 {% for artical in artical_list %}
                     <div class="div3">
                         <span></span>
-                        <time style="position: absolute;font-size: 10px;left: 20px;">{{ artical.createtime|date:'Y-m-d' }}</time>
-                        <a style="position: absolute;font-size: 18px;left: 80px;" href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                        <time>{{ artical.createtime|date:'Y-m-d' }}</time>
+                        <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
                     </div>
                 {% endfor %}
             </div>
-
         </div>
         <hr/>
-
     </div>
-
+{% endblock %}
+{% block js %}
     <script type="text/javascript">
         $(".pagination").css("marginLeft", 350 - 0.5 * $(".pagination").width() + "px")
         console.log($(".head").height())

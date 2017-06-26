@@ -7,21 +7,18 @@
     active
 {% endblock %}
 {% block box-right %}
-       <div class="box-right">
+    <div class="box-right">
         <header class="title">标签页</header>
-       <hr/>
-            <div style="width: 90%;margin: 40px;">
-                 {% for tag in tags %}
-                     {% if tag.tname in tag_more_name %}
-                        <a class="a2" href="{% url 'tag_articals' tag.tname %}">{{ tag.tname }}</a>
-                     {% else %}
-                         <a class="a1" href="{% url 'tag_articals' tag.tname %}">{{ tag.tname }}</a>
-                     {% endif %}
-
-                {% endfor %}
+        <hr/>
+        <div class="box-right-tag">
+            {% for tag in tags %}
+                {% if tag.tname in tag_more_name %}
+                    <a class="tag-large" href="{% url 'tag_articals' tag.tname %}">{{ tag.tname }}</a>
+                {% else %}
+                    <a class="tag-small" href="{% url 'tag_articals' tag.tname %}">{{ tag.tname }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
-
-
     </div>
 {% endblock %}
 

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 {% load staticfiles %}
-{% load djangomarkdown %}
 <head>
     <meta charset="UTF-8">
     {% block title %}
@@ -9,53 +8,50 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/codelight.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/pagination.css' %}"/>
     <script src="{% static 'blog/javascripts/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'blog/javascripts/bootstrap.min.js' %}" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="box">
     <div class="box-left">
-        <div class="b1">
+        <div class="box-left-header">
             <span>追逐繁星的孩子</span>
-            <p style="font-weight: initial; font-size: larger">お帰りなさい</p>
+            <p>お帰りなさい</p>
         </div>
-
         <a href="{% url 'mainpage' %}" class="list-group-item {% block active_main %}{% endblock %}">首页</a>
         <a href="{% url 'tag' %}" class="list-group-item {% block active_tag %}{% endblock %}">标签</a>
         <a href="{% url 'archive' %}" class="list-group-item {% block active_archive %}{% endblock %}">归档</a>
         <a href="{% url 'aboutme' %}" class="list-group-item {% block active_aboutme %}{% endblock %}">关于</a>
-        <a href="#" class="list-group-item">搜索</a>
-        <div class="b2">
-            <div style="width: 120px;height: 150px;margin: auto;">
-                <img src="{% static 'blog/images/headImage.jpg' %}" width="120px" height="120px" />
-                <p style="text-align: center;font-size: 15px;color: #222;font-weight: 600;line-height: 30px;">雷姆kwy</p>
+        <div class="author-info">
+            <div class="author-intr">
+                <img src="{% static 'blog/images/headImage.jpg' %}" width="120px" height="120px"/>
+                <p>雷姆kwy</p>
             </div>
-            <div style="width: 150px;height: 50px;margin: auto;margin-top: 20px;">
-                <a class="b3" href="{% url 'archive' %}">
+            <div class="author-articles-items">
+                <a href="{% url 'archive' %}">
                     <div>{{ paginator.count }}</div>
                     <p>文章</p>
                 </a>
-                <a class="b3" href="AboutMe.html">
+                <a href="AboutMe.html">
                     <div>123</div>
                     <p>收藏</p>
                 </a>
-                <a class="b3" href="{% url 'tag' %}">
+                <a href="{% url 'tag' %}">
                     <div>{{ tags|length }}</div>
                     <p>标签</p>
                 </a>
             </div>
-            <div style="width: 90%;border-bottom: 1px dotted #ddd;border-top: 1px dotted #ddd;margin: auto;margin-top: 20px;height: 30px;text-align: center">
-                <a style="font-weight: 600;color: orangered;line-height: 30px;font-size: 16px;" href="{% url 'RSS' %}">RSS</a>
+            <div class="rss">
+                <a href="{% url 'RSS' %}">RSS</a>
             </div>
-            <div class="" style="width: 90%;margin: auto;margin-top: 20px;height: 50px;text-align: center">
-                <div class="box1">
-                     <a  href="https://github.com/yasinasama" target="_blank">
-                         <img style="border-style: none;margin: auto;width: 19px;height: 19px;" src="{% static 'blog/images/github.png' %}"> GitHub </a>
+            <div class="author-sites-items">
+                <div class="github">
+                    <a href="https://github.com/yasinasama" target="_blank">
+                        <img src="{% static 'blog/images/github.png' %}"> GitHub </a>
                 </div>
-                <div>
-                     <a class="box2" href="https://www.facebook.com/profile.php?id=100015894214871" target="_blank">
-                         <img style="border-style: none;margin: auto;width: 19px;height: 19px;" src="{% static 'blog/images/facebook.png' %}"> Facebook </a>
+                <div class="facebook">
+                    <a href="https://www.facebook.com/profile.php?id=100015894214871" target="_blank">
+                        <img src="{% static 'blog/images/facebook.png' %}"> Facebook </a>
                 </div>
             </div>
         </div>
@@ -71,17 +67,17 @@
         <span><span class="glyphicon glyphicon-user"></span> Contributor: feng</span>
     </div>
 </footer>
-
 </body>
 <script>
-    var b2h = $(".b2").position().top;
-	$(window).scroll(function(){
-		if($(document).scrollTop()>b2h){
-			$(".b2").css({"position":"fixed","top":0})
-		}if($(document).scrollTop()<=b2h){
-			$(".b2").css({"position":""})
-		}
-	})
+    var b2h = $(".author-info").position().top;
+    $(window).scroll(function () {
+        if ($(document).scrollTop() > b2h) {
+            $(".author-info").css({"position": "fixed", "top": 0})
+        }
+        if ($(document).scrollTop() <= b2h) {
+            $(".author-info").css({"position": ""})
+        }
+    })
 </script>
 {% block js %}
 {% endblock %}
