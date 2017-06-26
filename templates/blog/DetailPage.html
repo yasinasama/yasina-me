@@ -10,26 +10,27 @@
                 <span>{{ current_artical.title }}</span>
             </div>
             <div class="p1">
-                <span>发表于 </span><span style="font-size: 12px;font-family: Lato;">{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;| &nbsp;分类于 </span><a style="text-decoration: underline;font-size: 18px;font-family: 微软雅黑" href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a>
+                <span><span class="glyphicon glyphicon-edit"></span> &nbsp;发表于 </span><span>{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-tag"></span> &nbsp;分类于 <a href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a>
             </div>
             <div class="neirong">
                 <img style="width: 600px;height: 400px;margin: auto" src="{{ current_artical.image.url }}">
             </div>
-            <p style="font-size: 16px;color: #555;line-height: 30px;">{{ current_artical.content|safe }}</p>
-            <br/>
-            <p style="font-size: 16px;color: #555;line-height: 30px;"></p>
+            <div class="markdown">
+                <p>{{ current_artical.content|djangomarkdown|safe }}</p>
+            </div>
+
             <br/>
 
 
         </div>
 
         <hr/>
-        <div class="boxs">
+        <div class="boxs-footer">
             {% if previos_artical %}
-                <a class='post-nav-next' href="{% url 'detail' previos_artical.title %}" style="float: left;"><i class="glyphicon glyphicon-chevron-left"></i>{{ previos_artical.title }}</a>
+                <a class='post-nav-next' href="{% url 'detail' previos_artical.title %}" style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span> {{ previos_artical.title }}</a>
             {% endif %}
             {% if later_artical %}
-                <a class='post-nav-next' href="{% url 'detail' later_artical.title %}" style="float: right;">{{ later_artical.title }}<i class="glyphicon glyphicon-chevron-right"></i></a>
+                <a class='post-nav-next' href="{% url 'detail' later_artical.title %}" style="float: right;">{{ later_artical.title }} <span class="glyphicon glyphicon-chevron-right"></span></a>
             {% endif %}
 
         </div>

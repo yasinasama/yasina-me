@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^aboutme/', blog.views.TemplateView.as_view(template_name='AboutMe.html'), name='aboutme'),
     url(r'^feed/', RSSFeed(), name="RSS"),
     url(r'^$', blog.views.TemplateView.as_view(template_name='MainPage.html'), name='mainpage'),
-    url(r'test', blog.views.test)
 ]
 
 if settings.DEBUG:

@@ -1,6 +1,7 @@
 
 body {
     background: #f0f0f0;
+    font-family: Lato;
 }
 
 * {
@@ -15,21 +16,29 @@ header {
 }
 
 .title {
-    font-family: 宋体;
     text-align: center;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
+    color: black;
 }
 
 .box {
     width: 970px;
     margin: auto;
+    overflow: hidden;
+    zoom: 1
+}
+
+.footer {
+    margin: auto;
+    width: 970px;
+    min-height: 50px;
 }
 
 .p1 {
     text-align: center;
     color: #999;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 30px;
 }
 
@@ -51,10 +60,38 @@ header {
 .box-right {
     width: 702px;
     background: #fff;
-    /*margin-left: 10px;*/
     margin-right: 10px;
-    /*border: 1px solid;*/
     float: left;
+}
+
+.box-right-header {
+    width: 702px;
+    height: 30px;
+    background: #fff;
+    margin-right: 10px;
+    float: left;
+}
+
+.footer-left {
+    width: 240px;
+    height: 50px;
+    margin-right: 10px;
+    float: left;
+}
+
+.footer-right {
+    width: 702px;
+    height: 150px;
+    margin-right: 10px;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-right p {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
 }
 
 .b1 {
@@ -65,7 +102,7 @@ header {
     margin-bottom: 10px;
 }
 
-.b1 a {
+.b1 span {
     color: #fff;
     font-size: 20px;
     text-align: center;
@@ -83,12 +120,11 @@ header {
 }
 
 .b2 {
-    height: 385px;
+    height: 355px;
     width: 240px;
     background: #fff;
     color: #fff;
     margin-top: 10px;
-    /*position: fixed;*/
 }
 
 .b2 img {
@@ -106,34 +142,36 @@ header {
 }
 
 .b3 div {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: inherit;;
     text-align: center;
 }
 
 .b3 p {
-    font-size: 16px;
+    font-size: 14px;
     color: #aaa;
     text-align: center;
 }
 
 .box1 {
-    width: 90px;
+    width: 108px;
     height: 30px;
     border-radius: 3px;
-    background: #ddd;
     float: left;
     margin-bottom: 5px;
+    line-height: 30px;
+    font-size: 12px;
 }
 
 .box2 {
-    width: 90px;
+    width: 108px;
     height: 30px;
     border-radius: 3px;
-    background: #ddd;
     float: right;
     margin-bottom: 5px;
+    line-height: 30px;
+    font-size: 12px;
 }
 
 .boxs {
@@ -141,11 +179,24 @@ header {
     margin: auto;
 }
 
-.post-nav-next{
-    position: relative;
-    display: block;
-    line-height: 20px;
+.markdown {
+    color: #555;
+}
+
+.markdown * {
     font-size: 14px;
+    line-height: 30px;
+}
+
+.boxs-footer {
+    width: 606px;
+    height: 40px;
+    margin: auto;
+}
+
+.post-nav-next {
+    line-height: 20px;
+    font-size: 15px;
     color: #555;
     border-bottom: none;
 }
@@ -273,3 +324,37 @@ header {
     top: 28px;
     z-index: 10;
 }
+.box-right-footer{
+    width: 702px;
+    height: 75px;
+    text-align: center;
+    background: #fff;
+    margin-right: 10px;
+    float: left;
+}
+
+.page, .prev, .next {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+}
+
+.page:hover, .prev:hover, .next:hover {
+    background: #eee;
+}
+
+.current_page {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    color: #666;
+    background: #eee;
+}
+

@@ -1,9 +1,8 @@
 from django.shortcuts import render_to_response, Http404, get_object_or_404
 from django.views.generic import View
-from markdown import markdown
 from django.db.models import *
 from blog.models import Artical, Tag
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.syndication.views import Feed
 
 
@@ -27,18 +26,17 @@ class TemplateView(View):
     template_type = ''
 
     def get(self, request, curpage=1, curartical='', tname=''):
-        artical_list = Artical.objects.all().order_by('-createtime')
+        artical_list = Artical.objects.all().order_by('-id')
         tags = Tag.objects.all()
-        paginator = Paginator(artical_list, 3)
+        paginator = Paginator(artical_list, 4)
 
         if self.template_type == 'detail':
-            # current_artical = Artical.objects.get(title=curartical)
             current_artical = get_object_or_404(Artical, title=curartical)
             if artical_list[0].id != current_artical.id:
                 later_artical = current_artical.get_next_by_createtime()
             else:
                 later_artical = False
-            if artical_list[len(artical_list)-1].id != current_artical.id:
+            if artical_list[len(artical_list) - 1].id != current_artical.id:
                 previos_artical = current_artical.get_previous_by_createtime()
             else:
                 previos_artical = False
@@ -77,10 +75,3 @@ class TemplateView(View):
             'paginator': paginator,
         }
         return render_to_response('../templates/blog/' + self.template_name, context)
-
-
-def test(request):
-    body = '''```python
-               hello world
-               '''
-    return render_to_response('../templates/blog/test.html', {'body': body})

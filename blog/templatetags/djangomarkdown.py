@@ -9,11 +9,10 @@ register = template.Library()
 @register.filter(name='djangomarkdown', is_safe=True)
 @stringfilter
 def djangomarkdown(value):
-    return mark_safe(markdown.markdown(value, extras=[
-        "html-classes",
-        "fenced-code-blocks",
-        "cuddled-lists",
-        "metadata",
-        "tables",
-        "spoiler"
-    ]))
+    return mark_safe(markdown.markdown(value, extensions=[
+                                      'markdown.extensions.extra',
+                                      'markdown.extensions.codehilite',
+                                      'markdown.extensions.toc',
+                                  ]))
+
+

@@ -8,9 +8,9 @@
 {% endblock %}
 {% block box-right %}
        <div class="box-right">
-        <header style="font-family: 宋体;">标签页</header>
-
-            <div class="tags" style="width: 90%;margin: auto;">
+        <header class="title">标签页</header>
+       <hr/>
+            <div style="width: 90%;margin: 40px;">
                  {% for tag in tags %}
                      {% if tag.tname in tag_more_name %}
                         <a class="a2" href="{% url 'tag_articals' tag.tname %}">{{ tag.tname }}</a>

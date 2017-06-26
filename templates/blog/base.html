@@ -8,6 +8,8 @@
     {% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/codelight.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/pagination.css' %}"/>
     <script src="{% static 'blog/javascripts/jquery.min.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'blog/javascripts/bootstrap.min.js' %}" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -15,7 +17,7 @@
 <div class="box">
     <div class="box-left">
         <div class="b1">
-            <a href="" >追逐繁星的孩子</a>
+            <span>追逐繁星的孩子</span>
             <p style="font-weight: initial; font-size: larger">お帰りなさい</p>
         </div>
 
@@ -34,7 +36,7 @@
                     <div>{{ paginator.count }}</div>
                     <p>文章</p>
                 </a>
-                <a class="b3" style="border-left:1px solid #ddd;border-right:1px solid #ddd" href="AboutMe.html">
+                <a class="b3" href="AboutMe.html">
                     <div>123</div>
                     <p>收藏</p>
                 </a>
@@ -46,25 +48,29 @@
             <div style="width: 90%;border-bottom: 1px dotted #ddd;border-top: 1px dotted #ddd;margin: auto;margin-top: 20px;height: 30px;text-align: center">
                 <a style="font-weight: 600;color: orangered;line-height: 30px;font-size: 16px;" href="{% url 'RSS' %}">RSS</a>
             </div>
-            <div class="" style="width: 90%;margin: auto;margin-top: 20px;height: 80px;">
+            <div class="" style="width: 90%;margin: auto;margin-top: 20px;height: 50px;text-align: center">
                 <div class="box1">
-
+                     <a  href="https://github.com/yasinasama" target="_blank">
+                         <img style="border-style: none;margin: auto;width: 19px;height: 19px;" src="{% static 'blog/images/github.png' %}"> GitHub </a>
                 </div>
-                <div class="box2">
-
-                </div>
-                <div class="box1">
-
-                </div>
-                <div class="box2">
-
+                <div>
+                     <a class="box2" href="https://www.facebook.com/profile.php?id=100015894214871" target="_blank">
+                         <img style="border-style: none;margin: auto;width: 19px;height: 19px;" src="{% static 'blog/images/facebook.png' %}"> Facebook </a>
                 </div>
             </div>
         </div>
     </div>
+    <div class="box-right-header"></div>
     {% block box-right %}
     {% endblock %}
 </div>
+<footer class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right">
+        <p><span class="glyphicon glyphicon-home"></span> Powered By <a href="https://www.djangoproject.com/" target="_blank">Django</a> & <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>!</p>
+        <span><span class="glyphicon glyphicon-user"></span> Contributor: feng</span>
+    </div>
+</footer>
 
 </body>
 <script>

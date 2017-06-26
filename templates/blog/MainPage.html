@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% load djangomarkdown %}
+{% load i18n %}
+
 {% block title %}
     <title>追逐繁星的孩子</title>
 {% endblock %}
@@ -15,57 +17,45 @@
                 </div>
 
                 <div class="p1">
-                    <span>发表于 </span><span style="font-size: 12px;font-family: Lato;">{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;| &nbsp;分类于 <a style="text-decoration: underline;font-size: 18px;font-family: 微软雅黑" href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a>
+                    <span><span class="glyphicon glyphicon-edit"></span> &nbsp发表于 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-tag"></span> &nbsp分类于 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a>
                 </div>
                 <div class="neirong">
                     <img style="width: 600px;height: 400px;margin: auto" src="{{ artical.image.url }}">
                 </div>
-                <p style="font-size: 16px;color: #555;line-height: 30px;">{{ artical.content|djangomarkdown }}</p>
+                <div class="markdown">
+                    {{ artical.content|djangomarkdown|safe|truncatechars_html:'200' }}
+                </div>
+
                 <br/>
-                <p style="font-size: 16px;color: #555;line-height: 30px;"></p>
-                <br/>
-                <button class="btn btn-default" style="border-color: #666;border-width: 2px;margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.title %}'">阅读全文</button>
-                    <div style="width: 100px;height: 70px;margin: auto;{% if not forloop.last %}border-bottom: 1px dashed #999;{% endif %}margin-bottom: 50px;">
-                    </div>
+                <button class="btn btn-default" style="border-color: #666;border-width: 2px;margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.title %}'">阅读全文 &rsaquo;&rsaquo;</button>
+                <div style="width: 100px;height: 70px;margin: auto;{% if not forloop.last %}border-bottom: 1px dashed #999;{% endif %}margin-bottom: 50px;">
+                </div>
             </div>
         {% endfor %}
-
-
         <hr/>
-
-        <ul class="pagination">
-            {% if artical_curpage.number <= 1 %}
-                <li>
-                    <a href="{% url 'page' 1 %}">&laquo;</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="{% url 'page' artical_curpage.previous_page_number %}">&laquo;</a>
-                </li>
-            {% endif %}
-            {% for page in paginator.page_range %}
-                <li>
-                    <a href="{% url 'page' page %}">{{ page }}</a>
-                </li>
-            {% endfor %}
-            {% if artical_curpage.number >= paginator.num_pages %}
-                <li>
-                    <a href="{% url 'page' paginator.num_pages %}">&raquo;</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="{% url 'page' artical_curpage.next_page_number %}">&raquo;</a>
-                </li>
-            {% endif %}
-        </ul>
+        <div class="box-right-footer">
+            <div class="pagination">
+                {% if artical_curpage.has_previous %}
+                    <a href="{% url 'page' artical_curpage.previous_page_number %}" class="prev">&lsaquo;&lsaquo;</a>
+                {% endif %}
+                {% for page in artical_curpage.pages %}
+                    {% if page %}
+                        {% ifequal page artical_curpage.number %}
+                            <span class="current_page">{{ page }}</span>
+                        {% else %}
+                            <a href="{% url 'page' page %}" class="page">{{ page }}</a>
+                        {% endifequal %}
+                    {% else %}...{% endif %}
+                {% endfor %}
+                {% if artical_curpage.has_next %}
+                    <a href="{% url 'page' artical_curpage.next_page_number %}" class="next">&rsaquo;&rsaquo;</a>
+                {% endif %}
+            </div>
+        </div>
 
     </div>
 {% endblock %}
-{% block js %}
-    <script type="text/javascript">
-        $(".pagination").css("marginLeft", 350 - 0.5 * $(".pagination").width() + "px")
-    </script>
-{% endblock %}
+
 
 
 
