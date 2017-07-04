@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^tag/(?P<tname>.+)', blog.views.TemplateView.as_view(template_name='TagArticals.html', template_type='tagarticals'), name='tag_articals'),
     url(r'^tag/', blog.views.TemplateView.as_view(template_name='TagPage.html'), name='tag'),
     url(r'^archive/', blog.views.TemplateView.as_view(template_name='ArchivePage.html'), name='archive'),
+    url(r'^category/(?P<cname>.+)', blog.views.TemplateView.as_view(template_name='CategoryArticals.html', template_type='categoryarticals'), name='category_articals'),
+    url(r'^category/', blog.views.TemplateView.as_view(template_name='CategoryPage.html'), name='category'),
     url(r'^aboutme/', blog.views.TemplateView.as_view(template_name='AboutMe.html'), name='aboutme'),
     url(r'^feed/', RSSFeed(), name="RSS"),
     url(r'^$', blog.views.TemplateView.as_view(template_name='MainPage.html'), name='mainpage'),

@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    <title>分类页 | 追逐繁星的孩子</title>
+{% endblock %}
+{% block active_category %}
+    active
+{% endblock %}
+{% block box-right %}
+    <div class="box-right">
+        <header class="title">分类页</header>
+        <hr/>
+        <div class="box-right-tag">
+            {% for category in categories %}
+                {% if category.cname in category_more_name %}
+                    <a class="tag-large" href="{% url 'category_articals' category.cname %}">{{ category.cname }}({{ category.sum }})</a>
+                {% else %}
+                    <a class="tag-small" href="{% url 'category_articals' category.cname %}">{{ category.cname }}({{ category.sum }})</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

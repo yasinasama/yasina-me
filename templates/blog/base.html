@@ -21,6 +21,7 @@
         <a href="{% url 'mainpage' %}" class="list-group-item {% block active_main %}{% endblock %}">首页</a>
         <a href="{% url 'tag' %}" class="list-group-item {% block active_tag %}{% endblock %}">标签</a>
         <a href="{% url 'archive' %}" class="list-group-item {% block active_archive %}{% endblock %}">归档</a>
+        <a href="{% url 'category' %}" class="list-group-item {% block active_category %}{% endblock %}">分类</a>
         <a href="{% url 'aboutme' %}" class="list-group-item {% block active_aboutme %}{% endblock %}">关于</a>
         <div class="author-info">
             <div class="author-intr">
@@ -32,9 +33,9 @@
                     <div>{{ paginator.count }}</div>
                     <p>文章</p>
                 </a>
-                <a href="AboutMe.html">
-                    <div>123</div>
-                    <p>收藏</p>
+                <a href="{% url 'category' %}">
+                    <div>{{ categories|length }}</div>
+                    <p>分类</p>
                 </a>
                 <a href="{% url 'tag' %}">
                     <div>{{ tags|length }}</div>

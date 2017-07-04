@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    <title>标签 | {{ curcategory.tname }} | 追逐繁星的孩子</title>
+{% endblock %}
+{% block active_tag %}
+    active
+{% endblock %}
+{% block box-right %}
+    <div class="box-right">
+        <div class="boxs">
+            <div class="head" style="position: relative;">
+                <div class="div0">
+                </div>
+                <div class="div1">
+                    <span></span>
+                    <p>{{ curcategory.cname }}: {{ articals_category|length }} 篇文章!</p>
+                </div>
+                {% for artical in articals_category %}
+                    <div class="div3">
+                        <span></span>
+                        <time>{{ artical.createtime|date:'Y-m-d' }}</time>
+                        <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr/>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        $(".pagination").css("marginLeft", 350 - 0.5 * $(".pagination").width() + "px")
+        console.log($(".head").height())
+        $(".div0").css({"height": $(".head").height(), "top": "20px"})
+    </script>
+{% endblock %}
+
+
