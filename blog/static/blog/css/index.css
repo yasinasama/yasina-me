@@ -232,16 +232,29 @@ header {
 
 .markdown {
     color: #555;
+    /*line-height: 15px;*/
 }
 
 .markdown * {
+    line-height: 25px;
+}
+.markdown p,ol,li {
     font-size: 14px;
-    line-height: 30px;
+}
+.markdown p {
+    margin: 0 0 15px 0;
+}
+
+.markdown li {
+    margin: 0 0 0 20px;
+}
+.markdown h1,h2,h3,h4,h5 {
+    margin: 25px 0;
 }
 
 .boxs-footer {
     width: 606px;
-    height: 40px;
+    height: 20px;
     margin: auto;
 }
 
@@ -259,7 +272,7 @@ header {
 
 .tag-small {
     font-size: 14px;
-    color: #ddd;
+    color: #ccc;
     display: inline-block;
     margin: 10px;
     border-bottom: 1px solid #aaa;
@@ -429,4 +442,15 @@ header {
     color: #666;
     background: #eee;
 }
-
+.aboutme p {
+    margin: 0 50px 20px;
+    font-size: 14px;
+    color: #555;
+}
+#disqus_thread{
+    width: 600px;
+    margin: 50px auto 50px;
+}
+#RecentComments{
+    display: none;
+}

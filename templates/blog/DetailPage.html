@@ -10,7 +10,7 @@
                 <span>{{ current_artical.title }}</span>
             </div>
             <div class="info">
-                <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://yasina.me/detail/{{current_artical.title}}"></span>
+                <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ current_artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' current_artical.tag %}">{{ current_artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://127.0.0.1:8000/detail/{{current_artical.title}}"></span>
             </div>
             <div class="pic">
                 <img style="width: 600px;height: 400px;margin: auto" src="{{ current_artical.image.url }}">

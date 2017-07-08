@@ -16,7 +16,8 @@
                     <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
                 </div>
                 <div class="info">
-                    <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://yasina.me/detail/{{artical.title}}"></span>
+                    <span class="disqus-comment-count" data-disqus-url="http://127.0.0.1:8000/detail/%E6%96%B0%E5%A2%9ECategory"></span>
+                    <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://127.0.0.1:8000/detail/{{artical.title}}"></span>
                 </div>
                 <div class="pic">
                     <img style="width: 600px;height: 400px;margin: auto" src="{{ artical.image.url }}">
