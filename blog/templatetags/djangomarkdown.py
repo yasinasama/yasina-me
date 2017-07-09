@@ -1,4 +1,5 @@
 import markdown
+import urllib
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
@@ -14,5 +15,12 @@ def djangomarkdown(value):
                                       'markdown.extensions.codehilite',
                                       'markdown.extensions.toc',
                                   ]))
+
+
+@register.filter(name='urlchange', is_safe=True)
+@stringfilter
+def urlchange(value):
+    return urllib.parse.quote(value)
+
 
 

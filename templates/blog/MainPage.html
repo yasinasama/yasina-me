@@ -16,7 +16,7 @@
                     <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
                 </div>
                 <div class="info">
-                    <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://yasina.me/detail/{{artical.title}}"></span>
+                    <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论 <span class="disqus-comment-count" data-disqus-url="http://yasina.me/detail/{{artical.title | urlchange}}"></span>
                 </div>
                 <div class="pic">
                     <img style="width: 600px;height: 400px;margin: auto" src="{{ artical.image.url }}">
@@ -53,6 +53,14 @@
     </div>
 {% endblock %}
 {% block js %}
+    <script>
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://yasina.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
     <script id="dsq-count-scr" src="//yasina.disqus.com/count.js" async></script>
     <script>
     var $disqusCount = $(".disqus-comment-count");
