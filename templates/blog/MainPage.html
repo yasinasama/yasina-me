@@ -13,7 +13,7 @@
         {% for artical in artical_curpage.object_list %}
             <div class="boxs">
                 <div class="title">
-                    <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                    <a href="{% url 'detail' artical.subtitle %}">{{ artical.title }}</a>
                 </div>
                 <div class="info">
                     <span><span class="glyphicon glyphicon-folder-close"></span> 日期 </span><span>{{ artical.createtime|date:'Y-m-d' }}</span> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-bookmark"></span> 标签 <a href="{% url 'tag_articals' artical.tag %}">{{ artical.tag }}</a> &nbsp;&nbsp;| &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> 评论
@@ -26,7 +26,7 @@
                     {{ artical.content|djangomarkdown|safe|truncatechars_html:'200' }}
                 </div>
                 <br/>
-                <button class="btn btn-default" style="border: 2px solid #666;margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.title %}'">阅读全文 &rsaquo;&rsaquo;</button>
+                <button class="btn btn-default" style="border: 2px solid #666;margin: auto;display: block;" onclick="location.href='{% url 'detail' artical.subtitle %}'">阅读全文 &rsaquo;&rsaquo;</button>
                 <div style="width: 100px;height: 50px;margin: 0 auto 40px;{% if not forloop.last %}border-bottom: 1px dashed #999;{% endif %}">
                 </div>
             </div>

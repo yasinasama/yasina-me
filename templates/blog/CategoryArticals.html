@@ -1,8 +1,8 @@
 {% extends "blog/base.html" %}
 {% block title %}
-    <title>标签 | {{ curcategory.tname }} | 追逐繁星的孩子</title>
+    <title>分类 | {{ curcategory.tname }} | 追逐繁星的孩子</title>
 {% endblock %}
-{% block active_tag %}
+{% block active_category %}
     active
 {% endblock %}
 {% block box-right %}
@@ -19,7 +19,7 @@
                     <div class="div3">
                         <span></span>
                         <time>{{ artical.createtime|date:'Y-m-d' }}</time>
-                        <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                        <a href="{% url 'detail' artical.subtitle %}">{{ artical.title }}</a>
                     </div>
                 {% endfor %}
             </div>

@@ -33,7 +33,7 @@ class TemplateView(View):
 
         if self.template_type == 'detail':
             try:
-                current_artical = Artical.objects.get(title=curartical)
+                current_artical = Artical.objects.get(subtitle=curartical)
                 if artical_list[0].id != current_artical.id:
                     later_artical = current_artical.get_next_by_createtime()
                 else:

@@ -5,6 +5,7 @@ from django.urls import reverse
 class Artical(models.Model):
 
     title = models.CharField(max_length=100)
+    subtitle = models.CharField(max_length=100, blank=True, null=True)
     content = models.TextField()
     tag = models.ForeignKey('Tag', to_field='tname', db_column='tag')
     category = models.ForeignKey('Category', to_field='cname', db_column='category', default=None)

@@ -20,7 +20,7 @@
                     <div class="div3">
                         <span></span>
                         <time>{{ artical.createtime|date:'Y-m-d' }}</time>
-                        <a href="{% url 'detail' artical.title %}">{{ artical.title }}</a>
+                        <a href="{% url 'detail' artical.subtitle %}">{{ artical.title }}</a>
                     </div>
                 {% endfor %}
             </div>
