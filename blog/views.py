@@ -52,7 +52,7 @@ class TemplateView(View):
         if self.template_type == 'tagarticals':
             try:
                 curtag = Tag.objects.get(tname=tname)
-                articals = Artical.objects.filter(tag=tname).all()
+                articals = Artical.objects.filter(tag=tname).all().order_by('-id')
             except ObjectDoesNotExist:
                 return render_to_response('../templates/blog/404.html')
         else:
@@ -62,7 +62,7 @@ class TemplateView(View):
         if self.template_type == 'categoryarticals':
             try:
                 curcategory = Category.objects.get(cname=cname)
-                articals_category = Artical.objects.filter(category=cname).all()
+                articals_category = Artical.objects.filter(category=cname).all().order_by('-id')
             except ObjectDoesNotExist:
                 return render_to_response('../templates/blog/404.html')
         else:
